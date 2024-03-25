@@ -40,12 +40,7 @@ export const processAsTvSeriesPlaylist = (parsedPlaylist: any, outputFolder: str
           directory = directory.join(" ");
         }
   
-        // console.log({ directory, name, url });
-        // Create a folder in the output folder with the name of the playlist
         const folder = `${outputFolder}/${directory}`;
-        console.log({ folder });
-  
-        // //   console.log({ folder });
   
         // Create the folder if it doesn't exist
         if (!existsSync(folder)) {
