@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 
-const sanitize = (str: string) => str.replace(/[^a-z0-9]/gi, "");
+const sanitize = (str: string) => str.replace(/[^a-z0-9]/gi, " ");
 
 export const processAsMoviePlaylist = (
   parsedPlaylist: any,
@@ -47,11 +47,11 @@ export const processAsTvSeriesPlaylist = (
 
       if (name) {
         name = sanitize(name);
+        console.log('Name: ', name)
         directory = name.split(" ");
         directory.pop();
         directory = directory.join(" ");
       }
-
       const folder = `${outputFolder}/${directory}`;
 
       // Create the folder if it doesn't exist

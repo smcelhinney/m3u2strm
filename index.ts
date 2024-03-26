@@ -1,7 +1,6 @@
 import { program } from "commander";
+import { existsSync, mkdirSync } from "fs";
 import parser from "iptv-playlist-parser";
-import { readFileSync, writeFileSync } from "fs";
-import { mkdirSync, existsSync } from "fs";
 import { resolve } from "path";
 import {
   processAsMoviePlaylist,
