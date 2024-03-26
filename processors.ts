@@ -65,7 +65,7 @@ export const processAsTvSeriesPlaylist = (
       // Create the file with the path of streamFile and add the url property to that file
       writeFileSync(streamFile, url);
 
-      // console.log(`Created ${streamFile}`);
+      console.log(`Created ${streamFile}`);
     } catch (error) {
       console.log(error);
     }
