@@ -7,29 +7,36 @@ import {
   processAsMoviePlaylist,
   processAsTvSeriesPlaylist,
 } from "./processors";
+import { readM3u } from "./resource-reader";
 
-program
-  .requiredOption("-o, --output <output>", "The output folder")
-  .requiredOption("-t, --type <type>", "The type of playlist: tv|movie")
-  .requiredOption("-f, --file <file>", "The file to parse");
+async function main() {
+  program
+    .requiredOption("-o, --output <output>", "The output folder")
+    .requiredOption("-t, --type <type>", "The type of playlist: tv|movie");
+  program.parse();
 
-program.parse();
+  const { output, type } = program.opts();
+  const [m3uPath] = program.args;
+  const m3uAsText = await readM3u(m3uPath);
 
-const { file, output, type } = program.opts();
+  // Create the output folder if it doesn't exist
+  const outputFolder = resolve(__dirname, output);
+  if (!existsSync(outputFolder)) {
+    mkdirSync(outputFolder, { recursive: true });
+  }
 
-// Create the output folder if it doesn't exist
-const outputFolder = resolve(__dirname, output);
+  if (m3uAsText) {
+    const playlist = parser.parse(m3uAsText);
 
-if (!existsSync(outputFolder)) {
-  mkdirSync(outputFolder, { recursive: true });
+    if (type === "tv") {
+      processAsTvSeriesPlaylist(playlist, outputFolder);
+    }
+
+    if (type === "movie") {
+      processAsMoviePlaylist(playlist, outputFolder);
+    }
+  } else {
+    throw new Error("No parseable playlist found");
+  }
 }
-
-const playlist = parser.parse(readFileSync(file, "utf-8"));
-
-if (type === "tv") {
-  processAsTvSeriesPlaylist(playlist, outputFolder);
-}
-
-if (type === "movie") {
-  processAsMoviePlaylist(playlist, outputFolder);
-}
+main().catch(console.error);
