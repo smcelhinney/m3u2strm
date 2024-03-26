@@ -1,23 +1,23 @@
+import { program } from "commander";
 import parser from "iptv-playlist-parser";
 import { readFileSync, writeFileSync } from "fs";
 import { mkdirSync, existsSync } from "fs";
 import { resolve } from "path";
-import { processAsMoviePlaylist, processAsTvSeriesPlaylist } from "./processors";
+import {
+  processAsMoviePlaylist,
+  processAsTvSeriesPlaylist,
+} from "./processors";
 
-const [file, output, type] = process.argv.slice(2);
+program
+  .requiredOption("-o, --output <output>", "The output folder")
+  .requiredOption("-t, --type <type>", "The type of playlist: tv|movie")
+  .requiredOption("-f, --file <file>", "The file to parse");
 
-const usage = () => {
-  console.log("Usage: node index.ts <file> <output> <type: tv|movie>");
-  console.log("Example: node index.ts file.m3u8 output.txt tv");
-};
+program.parse();
 
-if (!file || !output || !type) {
-  usage();
-  process.exit(1);
-}
+const { file, output, type } = program.opts();
 
 // Create the output folder if it doesn't exist
-
 const outputFolder = resolve(__dirname, output);
 
 if (!existsSync(outputFolder)) {
@@ -30,6 +30,6 @@ if (type === "tv") {
   processAsTvSeriesPlaylist(playlist, outputFolder);
 }
 
-if(type === "movie") {
+if (type === "movie") {
   processAsMoviePlaylist(playlist, outputFolder);
 }

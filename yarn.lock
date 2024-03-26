@@ -9,6 +9,11 @@
   dependencies:
     undici-types "~5.26.4"
 
+commander@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-12.0.0.tgz#b929db6df8546080adfd004ab215ed48cf6f2592"
+  integrity sha512-MwVNWlYjDTtOjX5PiD7o5pK0UrFU/OYgcJfjjK4RaHZETNtjJqrZa9Y9ds88+A+f+d5lv+561eZ+yCKoS3gbAA==
+
 iptv-playlist-parser@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/iptv-playlist-parser/-/iptv-playlist-parser-0.13.0.tgz#1c0a735035d11721642f1cff4e4e7fd20e27763f"
