@@ -47,7 +47,6 @@ export const processAsTvSeriesPlaylist = (
 
       if (name) {
         name = sanitize(name);
-        console.log('Name: ', name)
         directory = name.split(" ");
         directory.pop();
         directory = directory.join(" ");
