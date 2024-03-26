@@ -1,3 +1,5 @@
 node_modules/
 output/
 *.m3u
+package-lock.json
+yarn.lock
