@@ -23,8 +23,10 @@ export const processAsMoviePlaylist = (
       // Create a file in the newly created folder with the name ${name}.strm
       const streamFile = `${folder}/${filename}.strm`;
 
-      // Create the file with the path of streamFile and add the url property to that file
-      writeFileSync(streamFile, url);
+      if(!existsSync(streamFile)){
+        // Create the file with the path of streamFile and add the url property to that file
+        writeFileSync(streamFile, url);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +43,7 @@ export const processAsTvSeriesPlaylist = (
   for (const item of parsedPlaylist.items) {
     try {
       let { name, url } = item;
-      let directory;  
+      let directory;
 
       if (name) {
         name = sanitize(name);
@@ -59,9 +61,10 @@ export const processAsTvSeriesPlaylist = (
       // Create a file in the newly created folder with the name ${name}.strm
       const streamFile = `${folder}/${name}.strm`;
 
-      // Create the file with the path of streamFile and add the url property to that file
-      writeFileSync(streamFile, url);
-
+      if (!existsSync(streamFile)) {
+        // Create the file with the path of streamFile and add the url property to that file
+        writeFileSync(streamFile, url);
+      }
     } catch (error) {
       console.log(error);
     }
