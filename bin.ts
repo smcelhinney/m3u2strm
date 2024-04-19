@@ -62,7 +62,7 @@ program
           processAsTvSeriesPlaylist(playlist, outputFolder);
         }
 
-        if (library === "movie") {
+        if (library === "movies") {
           processAsMoviePlaylist(playlist, outputFolder);
         }
 
@@ -72,6 +72,8 @@ program
       default:
         throw new Error('Invalid library. Must be "tv", "movies", or "live"');
     }
+
+    
     // console.log({ opts: this.opts().library });
     // console.log("clone command called with library: ", { args });
   });
