@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx bun build bin.ts --compile --outfile m3u2strm"
+    "build": "npx bun build bin.ts --compile --outfile m3u2strm && chmod +x m3u2strm"
   },
   "keywords": [],
   "author": "",
