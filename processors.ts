@@ -70,4 +70,9 @@ export const processAsTvSeriesPlaylist = (
     }
   }
   console.timeEnd("processAsTvSeriesPlaylist: Processing time");
+  if(!process.env.EMBY_API_KEY || !process.env.EMBY_API_URL){
+    console.error('EMBY_API_KEY and EMBY_API_URL are required to sync tv series')
+  }
+    
+
 };
