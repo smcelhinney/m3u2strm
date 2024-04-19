@@ -6,7 +6,7 @@ export const processAsMoviePlaylist = (
   parsedPlaylist: any,
   outputFolder: string
 ) => {
-  console.time("processAsMoviePlaylist: Processing time");
+
   for (const item of parsedPlaylist.items) {
     try {
       const { name, url } = item;
@@ -31,7 +31,7 @@ export const processAsMoviePlaylist = (
       console.log(error);
     }
   }
-  console.timeEnd("processAsMoviePlaylist: Processing time");
+
   if (!process.env.EMBY_API_KEY || !process.env.EMBY_API_URL) {
     console.error(
       "EMBY_API_KEY and EMBY_API_URL are required to sync movies"

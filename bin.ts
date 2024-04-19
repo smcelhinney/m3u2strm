@@ -44,7 +44,7 @@ program
             "Output and URL are required for tv and movies libraries"
           );
         }
-
+        console.time("Total Processing time");
         const m3uAsText = await readM3u(url);
         if (!m3uAsText) {
           program.error("No parseable playlist found");
@@ -65,6 +65,7 @@ program
         if (library === "movies") {
           processAsMoviePlaylist(playlist, outputFolder);
         }
+        console.timeEnd("Total Processing time");
 
         break;
       case "live":
