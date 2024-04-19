@@ -23,7 +23,7 @@ export const processAsMoviePlaylist = (
       // Create a file in the newly created folder with the name ${name}.strm
       const streamFile = `${folder}/${filename}.strm`;
 
-      if(!existsSync(streamFile)){
+      if (!existsSync(streamFile)) {
         // Create the file with the path of streamFile and add the url property to that file
         writeFileSync(streamFile, url);
       }
@@ -32,6 +32,11 @@ export const processAsMoviePlaylist = (
     }
   }
   console.timeEnd("processAsMoviePlaylist: Processing time");
+  if (!process.env.EMBY_API_KEY || !process.env.EMBY_API_URL) {
+    console.error(
+      "EMBY_API_KEY and EMBY_API_URL are required to sync movies"
+    );
+  }
 };
 
 export const processAsTvSeriesPlaylist = (
@@ -70,9 +75,9 @@ export const processAsTvSeriesPlaylist = (
     }
   }
   console.timeEnd("processAsTvSeriesPlaylist: Processing time");
-  if(!process.env.EMBY_API_KEY || !process.env.EMBY_API_URL){
-    console.error('EMBY_API_KEY and EMBY_API_URL are required to sync tv series')
+  if (!process.env.EMBY_API_KEY || !process.env.EMBY_API_URL) {
+    console.error(
+      "EMBY_API_KEY and EMBY_API_URL are required to sync tv series"
+    );
   }
-    
-
 };
