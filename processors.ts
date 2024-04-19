@@ -43,7 +43,6 @@ export const processAsTvSeriesPlaylist = (
   parsedPlaylist: any,
   outputFolder: string
 ) => {
-  console.time("processAsTvSeriesPlaylist: Processing time");
 
   for (const item of parsedPlaylist.items) {
     try {
@@ -74,7 +73,7 @@ export const processAsTvSeriesPlaylist = (
       console.log(error);
     }
   }
-  console.timeEnd("processAsTvSeriesPlaylist: Processing time");
+
   if (!process.env.EMBY_API_KEY || !process.env.EMBY_API_URL) {
     console.error(
       "EMBY_API_KEY and EMBY_API_URL are required to sync tv series"
